@@ -28,6 +28,7 @@ function plugin(options) {
 
   // set default options or args
   opts.marked = opts.marked || {};
+  opts.cheerio = opts.cheerio || {};
   opts.removeAttributeAfterwards = opts.removeAttributeAfterwards || false;
 
   // hand opts to marked
@@ -41,7 +42,7 @@ function plugin(options) {
       var foundMatches = false;
 
       // parse html content in cheerio to query it
-      var $ = cheerio.load(data.contents.toString());
+      var $ = cheerio.load(data.contents.toString(), opts.cheerio);
 
       $("[data-markdown]").each(function(index) {
         
